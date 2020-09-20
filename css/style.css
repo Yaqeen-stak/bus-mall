@@ -1,0 +1,31 @@
+*{
+    background-color: rgb(80, 105, 21);
+}
+h1{
+    font-size: 70px;
+    text-align: center;
+    color: bisque;
+}
+nav ul li  {
+    display: inline;
+   list-style: none;
+    margin-left: 10px;
+   
+
+}
+nav ul li a {
+    float: right;
+    color: blanchedalmond;
+    text-decoration: none;
+    padding-right: 15px;
+    font-size: medium;
+}
+#images-section img{
+   margin-left: 130px;
+    width: 300px;
+    line-height: 400px;
+}
+#result{
+    color: rgb(216, 204, 43);
+    font-size: 20px;
+}
