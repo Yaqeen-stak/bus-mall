@@ -1,6 +1,4 @@
-*{
-    background-color: rgb(80, 105, 21);
-}
+
 h1{
     font-size: 70px;
     text-align: center;
@@ -20,12 +18,13 @@ nav ul li a {
     padding-right: 15px;
     font-size: medium;
 }
-#images-section img{
-   margin-left: 130px;
+img {
     width: 300px;
-    line-height: 400px;
+    height: 300px;
+    margin-left: 100px;
 }
-#result{
-    color: rgb(216, 204, 43);
-    font-size: 20px;
-}
+#myChart {
+    background-color: white;
+    width: 80%;
+    
+  }
