@@ -23,6 +23,12 @@ img {
     height: 300px;
     margin-left: 100px;
 }
+canvas{
+    width: 1000px !important;
+    height: 600px !important;
+    margin-left: 300px;
+    margin-top: 50px;
+}
 #myChart {
     background-color: white;
     width: 80%;
