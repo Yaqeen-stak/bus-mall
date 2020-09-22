@@ -22,7 +22,7 @@ var names = [
     'water-can',
     'wine-glass',
 ];
-Image.clicked = 0;
+var clicked = 0;
 var rounds = 25;
 var imageNumber1EL = document.getElementById('image-number1');
 var imageNumber2EL = document.getElementById('image-number2');
@@ -32,7 +32,7 @@ var result = document.getElementById('result');
 
 function randomImage(max, min) {
 
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function Image(name) {
@@ -53,17 +53,23 @@ Image.all = [];
 for (let i = 0; i < names.length; i++) {
     new Image(names[i]);
 }
-
+console.log('names.length',names.length);
+var noRepeatImagesArray = [];
 function render() {
-    var leftImage = randomImage(0, Image.all.length - 1);
-    var middleImage = randomImage(0, Image.all.length - 1);
-    var rightImage = randomImage(0, Image.all.length - 1);
+    var leftImage = randomImage(0, Image.all.length-1);
+    var middleImage = randomImage(0, Image.all.length-1);
+    var rightImage = randomImage(0, Image.all.length-1);
+    
 
-    while(leftImage === rightImage || leftImage === middleImage || rightImage === middleImage){
-        leftImage = names[randomNumber(0, names.length-1)];
-        middleImage = names[randomNumber(0, names.length-1)];
-        rightImage = names[randomNumber(0, names.length-1)];
+    while(leftImage === rightImage || leftImage === middleImage || rightImage === middleImage || noRepeatImagesArray.includes(leftImage) || noRepeatImagesArray.includes(middleImage) || noRepeatImagesArray.includes(rightImage)){
+        leftImage = names[randomImage(0, Image.all.length-1)];
+        middleImage = names[randomImage(0, Image.all.length-1)];
+        rightImage = names[randomImage(0,Image.all.length-1)];
       }
+      noRepeatImagesArray =[];
+      noRepeatImagesArray.push(leftImage);
+      noRepeatImagesArray.push(middleImage);
+      noRepeatImagesArray.push(rightImage);
     
     // while (leftImage === middleImage || leftImage === rightImage) {
     //     leftImage = randomImage(0, Image.all.length - 1);
@@ -86,31 +92,35 @@ function render() {
     Image.all[leftImage].viewed++;
     Image.all[middleImage].viewed++;
     Image.all[rightImage].viewed++;
-
+   
 }
-console.log(Image.all)
+console.log('whole array',Image.all)
+getVotes();
+
 
 imagesSection.addEventListener('click', clickHandler);
 
 function clickHandler(event) {
-    if (event.target.id !== 'images-section') {
-        Image.clicked++;
+    if (event.target.id === 'image-number1' ||event.target.id ===  'image-number2' ||event.target.id ===  'image-number3' ) {
+        clicked++;
 
         for (var m = 0; m < Image.all.length; m++) {
             if (Image.all[m].name === event.target.title) {
                 Image.all[m].votes++;
             }
         }
-        if (Image.clicked >= 25) {
+        if (clicked >= 25) {
             imagesSection.removeEventListener('click', clickHandler);
             createChart();
             // getResult();
+             updateVotes();
         }
     }
-
+   
     render();
 }
 render();
+
 function getResult() {
     var ulEl = document.createElement('ul');
     result.appendChild(ulEl);
@@ -142,21 +152,19 @@ function createChart() {
                 backgroundColor:
                     '#d8af61' ,
                 borderColor: 'black',
-                borderWidth:5,
+                borderWidth:2,
                 hoverBackgroundColor: 'pink',
                 data: votes,
             },{
                 label: '# Of Viewed',
                 backgroundColor: '#b44454',
                 borderColor: 'black',
-                borderWidth:5,
+                borderWidth:2,
                 hoverBackgroundColor: 'pink',
                 data: viewed,
             }
         ]
         },
-    
-        // Configuration options go here
         options: {
             // tooltips:{
             //     mode: 'index',
@@ -164,3 +172,23 @@ function createChart() {
         }
     });
 }
+// Image.votes = [];
+// Image.viewed = [];
+
+function updateVotes() {
+var votesString =  JSON.stringify(Image.all);
+localStorage.setItem('votes', votesString);
+
+}
+function getVotes(){
+    var votesString = localStorage.getItem('votes');
+
+  var votesArray = JSON.parse(votesString);
+
+
+  if (votesArray) {
+      Image.all=votesArray;
+    console.log('votesArray.length',votesArray.length);
+  }
+}
+
