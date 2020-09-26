@@ -112,7 +112,7 @@ function clickHandler(event) {
         if (clicked >= 25) {
             imagesSection.removeEventListener('click', clickHandler);
             createChart();
-            // getResult();
+            getResult();
              updateVotes();
         }
     }

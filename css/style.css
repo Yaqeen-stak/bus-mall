@@ -1,8 +1,17 @@
+*{
+    /* background-color: rgb(228, 226, 245); */
+  
+}
+header{
+    background-image: url(https://img.freepik.com/free-vector/stone-background-with-golden-strokes_125540-130.jpg?size=626&ext=jpg&ga=GA1.2.1564559326.1598390098);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 h1{
     font-size: 70px;
     text-align: center;
-    color: bisque;
+    color:#b44454;
 }
 nav ul li  {
     display: inline;
@@ -13,7 +22,7 @@ nav ul li  {
 }
 nav ul li a {
     float: right;
-    color: blanchedalmond;
+    color: #b44454;
     text-decoration: none;
     padding-right: 15px;
     font-size: medium;
@@ -21,7 +30,8 @@ nav ul li a {
 img {
     width: 300px;
     height: 300px;
-    margin-left: 100px;
+    margin-left: 150px;
+   
 }
 canvas{
     width: 1000px !important;
@@ -34,3 +44,27 @@ canvas{
     width: 80%;
     
   }
+#result {
+    display: inline-block;
+   margin-left: 550px;
+    list-style: none;
+    color: #b44454;
+    font-size: 20px;
+    border-color: #d8af61;
+    background-color: #d8af61 ;
+}
+footer {
+    background-image: url(https://img.freepik.com/free-vector/stone-background-with-golden-strokes_125540-130.jpg?size=626&ext=jpg&ga=GA1.2.1564559326.1598390098);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    margin-top: 400px;
+    text-align: center;
+    color: #b44454 ;
+    font-size: 40px;
+}
+footer p {
+    margin-bottom: 0px;
+    margin-top: 70PX;
+    display: inline-block;
+}
